@@ -1,0 +1,15 @@
+/* Write your CSS here */
+.todo-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+}
+.btn {
+  border-color: #ff0b37;
+  color: #ff0b37;
+  padding: 5px;
+  border-radius: 5px;
+  width: 70px;
+}
