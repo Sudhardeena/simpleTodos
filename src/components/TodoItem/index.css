@@ -5,6 +5,12 @@
   justify-content: space-between;
   align-items: center;
   list-style: none;
+  width: 100%;
+}
+.btn-div {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 .btn {
   border-color: #ff0b37;
@@ -12,4 +18,33 @@
   padding: 5px;
   border-radius: 5px;
   width: 70px;
+  margin-left: 20px;
+}
+.edit-btn {
+  color: blueviolet;
+  border-color: blueviolet;
+}
+.editable-title-input {
+  width: 400px;
+  font-size: 15px;
+  margin: 10px;
+  padding: 10px;
+}
+p {
+  width: 700px;
+  font-size: 15px;
+  margin: 10px;
+  padding: 10px;
+}
+@media screen and (max-width: 600px) {
+  p {
+    width: 200px;
+  }
+  .editable-title-input {
+    width: 200px;
+  }
+  .btn {
+    margin-left: 10px;
+    width: 50px;
+  }
 }

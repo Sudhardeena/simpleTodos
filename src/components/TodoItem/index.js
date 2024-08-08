@@ -1,22 +1,72 @@
 // Write your code here
+import {Component} from 'react'
 import './index.css'
 
-const TodoItem = props => {
-  const {todoDetail, deleteTodo} = props
-  const {title, id} = todoDetail
+class TodoItem extends Component {
+  state = {titleInput: '', enableEdit: false}
 
-  const onDelete = () => {
+  componentDidMount() {
+    const {todoDetail} = this.props
+    const {title} = todoDetail
+    this.setState({titleInput: title})
+  }
+
+  onDelete = () => {
+    const {todoDetail, deleteTodo} = this.props
+    const {id} = todoDetail
     deleteTodo(id)
   }
 
-  return (
-    <li className="todo-item">
-      <p className="todo">{title}</p>
-      <button className="btn" type="button" onClick={onDelete}>
-        Delete
-      </button>
-    </li>
-  )
+  onEdit = () => {
+    this.setState({enableEdit: true})
+  }
+
+  onChangeTitle = event => this.setState({titleInput: event.target.value})
+
+  onSave = () => {
+    const {titleInput} = this.state
+    const {editTodo, todoDetail} = this.props
+    const {id} = todoDetail
+    const updtedTodo = {id, title: titleInput}
+    editTodo(updtedTodo)
+    this.setState({enableEdit: false})
+  }
+
+  render() {
+    const {titleInput, enableEdit} = this.state
+    return (
+      <li className="todo-item">
+        {enableEdit ? (
+          <input
+            type="text"
+            className="editable-title-input"
+            value={titleInput}
+            onChange={this.onChangeTitle}
+          />
+        ) : (
+          <p className="todo">{titleInput}</p>
+        )}
+        <div className="btn-div">
+          {enableEdit === false ? (
+            <button
+              className="btn edit-btn"
+              type="button"
+              onClick={this.onEdit}
+            >
+              Edit
+            </button>
+          ) : (
+            <button className="btn" type="button" onClick={this.onSave}>
+              Save
+            </button>
+          )}
+          <button className="btn" type="button" onClick={this.onDelete}>
+            Delete
+          </button>
+        </div>
+      </li>
+    )
+  }
 }
 
 export default TodoItem
